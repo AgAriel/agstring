@@ -8,7 +8,6 @@ import (
 
 	"github.com/mozillazg/go-unidecode"
 	"github.com/pkg/errors"
-	"github.com/thoas/go-funk"
 )
 
 // Nth returns nth element of given slice or empty string if out of limits
@@ -123,20 +122,6 @@ func nonempty(ls []string, t Transform) []string {
 
 // IsEmpty checks if slice contains only empty strings
 func IsEmpty(ls ...string) bool { return len(NonEmpty(ls...)) == 0 }
-
-// IsEqual checks if two slices are equal after applying transforms on 2nd slice
-func IsEqual(source, other []string, transforms ...Transform) bool {
-	return (source == nil && other == nil) ||
-		funk.Equal(source, Map(other, transforms...))
-}
-
-// MustEqual checks if two slices are equal after applying transforms on 2nd slice otherwise return error
-func MustEqual(source, other []string, transforms ...Transform) error {
-	if !IsEqual(source, other, transforms...) {
-		return errors.Errorf("must be equal: expected %v, got %v", source, other)
-	}
-	return nil
-}
 
 // RemoveAllDiacritics removes diacritics from all strings in slice
 func RemoveAllDiacritics(ls ...string) []string { return Map(ls, RemoveDiacritics) }
