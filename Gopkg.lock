@@ -11,14 +11,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:ee27b1c6ac91d1d9094c2dd87e42b2505c6bc02abe59e044f9b555d5faa59bfa"
+  digest = "1:66cb38e05a446b5d4800a2e74aece164185c5e6f22b43182624e6663a0460871"
   name = "github.com/mozillazg/go-unidecode"
   packages = [
     ".",
     "table",
   ]
   pruneopts = "UT"
-  revision = "8772af720c7f2f4d216cc73c5f23de17450dd008"
+  revision = "2f1d70ec3423a9d5e003c7e2db9455dad7df6319"
 
 [[projects]]
   digest = "1:cf31692c14422fa27c83a05292eb5cbe0fb2775972e8f1f8446a71549bd8980b"
@@ -37,23 +37,23 @@
   version = "v1.0.0"
 
 [[projects]]
-  digest = "1:c40d65817cdd41fac9aa7af8bed56927bb2d6d47e4fea566a74880f5c2b1c41e"
+  digest = "1:5da8ce674952566deae4dbc23d07c85caafc6cfa815b0b3e03e41979cedb8750"
   name = "github.com/stretchr/testify"
   packages = [
     "assert",
     "require",
   ]
   pruneopts = "UT"
-  revision = "f35b8ab0b5a2cef36673838d662e249dd9c94686"
-  version = "v1.2.2"
+  revision = "ffdc059bfe9ce6a4e144ba849dbedead332c6053"
+  version = "v1.3.0"
 
 [[projects]]
   branch = "master"
-  digest = "1:737e047484d7febe501805c6d3f5963b2dabd674f66645bc59a02a07de053cdb"
+  digest = "1:68a7cb5028bb8bd8efa388a7eaee577f2535c99209df851afb4b49c102316cf2"
   name = "github.com/thoas/go-funk"
   packages = ["."]
   pruneopts = "UT"
-  revision = "fbae87fb5b5cdb35c9682d11c420061cf41268a9"
+  revision = "c43409e2d5def27be9b081e316441108def35c8d"
 
 [solve-meta]
   analyzer-name = "dep"
