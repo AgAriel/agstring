@@ -27,6 +27,18 @@ func StringContainsAny(s string, ls ...string) bool {
 	return StringIndexContainingSubString(s, ls...) != -1
 }
 
+// CombinedContainsAny is a wrapper around StringContainsAny
+// to check if combined slice of strings contains any of given strings
+func CombinedContainsAny(holder []string, searched ...string) bool {
+	return StringContainsAny(strings.Join(holder, ""), searched...)
+}
+
+// SpaceCombinedContainsAny is a wrapper around StringContainsAny
+// to check if slice of strings combined with whitespace contains any of given strings
+func SpaceCombinedContainsAny(holder []string, searched ...string) bool {
+	return StringContainsAny(strings.Join(holder, " "), searched...)
+}
+
 // ContainsAll checks if given slice contains all searched strings
 func ContainsAll(holder []string, searched ...string) bool {
 	for _, s := range searched {
@@ -45,6 +57,18 @@ func StringContainsAll(holder string, searched ...string) bool {
 		}
 	}
 	return true
+}
+
+// CombinedContainsAll is a wrapper around StringContainsAll
+// to check if combined slice of strings contains all searched strings
+func CombinedContainsAll(holder []string, searched ...string) bool {
+	return StringContainsAll(strings.Join(holder, ""), searched...)
+}
+
+// SpaceCombinedContainsAll is a wrapper around StringContainsAll
+// to check if slice of strings combined with whitespace contains all searched strings
+func SpaceCombinedContainsAll(holder []string, searched ...string) bool {
+	return StringContainsAll(strings.Join(holder, " "), searched...)
 }
 
 // IndexContainingSubString returns the first index in given slice

@@ -62,6 +62,43 @@ func TestStringContainsAny(t *testing.T) {
 		require.Equal(t, tt.expected, StringContainsAny(tt.holder, tt.searched...))
 	}
 }
+func TestCombinedContainsAny(t *testing.T) {
+	testCases := []struct {
+		holder, searched []string
+		expected         bool
+	}{
+		{[]string{""}, []string{"a"}, false},
+		{[]string{"", "a"}, []string{"a"}, true},
+		{[]string{"a", "b"}, []string{"a"}, true},
+		{[]string{"a", "b"}, []string{"ab"}, true},
+		{[]string{"a", "b"}, []string{"ba"}, false},
+		{[]string{"ab"}, []string{"a", "c"}, true},
+		{[]string{"ab"}, []string{"c", "d"}, false},
+	}
+
+	for _, tt := range testCases {
+		require.Equal(t, tt.expected, CombinedContainsAny(tt.holder, tt.searched...))
+	}
+}
+func TestSpaceCombinedContainsAny(t *testing.T) {
+	testCases := []struct {
+		holder, searched []string
+		expected         bool
+	}{
+		{[]string{""}, []string{"a"}, false},
+		{[]string{"", "a"}, []string{"a"}, true},
+		{[]string{"a", "b"}, []string{"a"}, true},
+		{[]string{"a", "b"}, []string{"ab"}, false},
+		{[]string{"a", "b"}, []string{"a b"}, true},
+		{[]string{"a", "b"}, []string{"ba"}, false},
+		{[]string{"ab"}, []string{"a", "c"}, true},
+		{[]string{"ab"}, []string{"c", "d"}, false},
+	}
+
+	for _, tt := range testCases {
+		require.Equal(t, tt.expected, SpaceCombinedContainsAny(tt.holder, tt.searched...))
+	}
+}
 
 func TestContainsAll(t *testing.T) {
 	testCases := []struct {
@@ -97,6 +134,49 @@ func TestStringContainsAll(t *testing.T) {
 
 	for _, tt := range testCases {
 		require.Equal(t, tt.expected, StringContainsAll(tt.holder, tt.searched...))
+	}
+}
+
+func TestCombinedContainsAll(t *testing.T) {
+	testCases := []struct {
+		holder, searched []string
+		expected         bool
+	}{
+		{[]string{""}, []string{"a"}, false},
+		{[]string{"", "a"}, []string{"a"}, true},
+		{[]string{"a", "b"}, []string{"a"}, true},
+		{[]string{"a", "b"}, []string{"a", "b"}, true},
+		{[]string{"a", "b"}, []string{"a", "b", "c"}, false},
+		{[]string{"a", "b"}, []string{"ab"}, true},
+		{[]string{"a", "b"}, []string{"ba"}, false},
+		{[]string{"ab"}, []string{"a", "c"}, false},
+		{[]string{"ab"}, []string{"c", "d"}, false},
+	}
+
+	for _, tt := range testCases {
+		require.Equal(t, tt.expected, CombinedContainsAll(tt.holder, tt.searched...))
+	}
+}
+
+func TestSpaceCombinedContainsAll(t *testing.T) {
+	testCases := []struct {
+		holder, searched []string
+		expected         bool
+	}{
+		{[]string{""}, []string{"a"}, false},
+		{[]string{"", "a"}, []string{"a"}, true},
+		{[]string{"a", "b"}, []string{"a"}, true},
+		{[]string{"a", "b"}, []string{"a", "b"}, true},
+		{[]string{"a", "b"}, []string{"a", "b", "c"}, false},
+		{[]string{"a", "b"}, []string{"ab"}, false},
+		{[]string{"a", "b"}, []string{"a b"}, true},
+		{[]string{"a", "b"}, []string{"ba"}, false},
+		{[]string{"ab"}, []string{"a", "c"}, false},
+		{[]string{"ab"}, []string{"c", "d"}, false},
+	}
+
+	for _, tt := range testCases {
+		require.Equal(t, tt.expected, SpaceCombinedContainsAll(tt.holder, tt.searched...))
 	}
 }
 
