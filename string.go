@@ -61,12 +61,6 @@ func ValueIfExists(k string, m map[string]string) string {
 	return k
 }
 
-// StringIterator provides a generator of names / strings
-type StringIterator interface {
-	Get() string
-	HasNext() bool
-}
-
 // ToLower makes lowercase strings in the given slice
 func ToLower(ls ...string) []string { return Map(ls, strings.ToLower) }
 
