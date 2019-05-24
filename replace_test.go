@@ -52,20 +52,53 @@ func TestReplaceMultispace(t *testing.T) {
 func TestReplaceWholeWords(t *testing.T) {
 	tests := []struct {
 		s           string
-		old         string
 		replacement string
+		olds        []string
 		expected    string
 	}{
-		{"port saint jose", "nt", "nntt", "port saint jose"},
-		{"po saint jose", "po", "port", "port saint jose"},
-		{"port st jose", "st", "saint", "port saint jose"},
-		{"port saint hose", "hose", "jose", "port saint jose"},
+		{
+			"port saint jose",
+			"nntt",
+			[]string{"nt"},
+			"port saint jose",
+		}, {
+			"po saint jose",
+			"port",
+			[]string{"po"},
+			"port saint jose",
+		}, {
+			"port st jose",
+			"saint",
+			[]string{"st"},
+			"port saint jose",
+		}, {
+			"port saint hose",
+			"jose",
+			[]string{"hose"},
+			"port saint jose",
+		}, {"port-saint-hose",
+			"jose",
+			[]string{"hose"},
+			"port-saint-jose",
+		}, {
+			"port-saint/hose",
+			"jose",
+			[]string{"hose"},
+			"port-saint/jose",
+		}, {"port-saint/h(os)e",
+			"jose",
+			[]string{"(os)"},
+			"port-saint/hjosee",
+		}, {
+			"po saint jose re po",
+			"port",
+			[]string{"po", "re"},
+			"port saint jose port port",
+		},
 	}
-	for i, tt := range tests {
-		if res := ReplaceWholeWord(tt.s, tt.old, tt.replacement); res != tt.expected {
-			t.Errorf("%d: For input %q replacing %s to %s, expected %q, got %q",
-				i, tt.s, tt.old, tt.replacement, tt.expected, res)
-		}
+	for _, tt := range tests {
+		actual := ReplaceWordAll(tt.s, tt.replacement, tt.olds...)
+		require.Equal(t, tt.expected, actual)
 	}
 }
 
