@@ -49,7 +49,7 @@ func TestReplaceMultispace(t *testing.T) {
 	}
 }
 
-func TestReplaceWholeWords(t *testing.T) {
+func TestReplaceWord(t *testing.T) {
 	tests := []struct {
 		s           string
 		replacement string
@@ -97,7 +97,7 @@ func TestReplaceWholeWords(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		actual := ReplaceWordAll(tt.s, tt.replacement, tt.olds...)
+		actual := ReplaceWord(tt.s, tt.replacement, tt.olds...)
 		require.Equal(t, tt.expected, actual)
 	}
 }

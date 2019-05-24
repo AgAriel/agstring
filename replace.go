@@ -13,15 +13,15 @@ const (
 	ZeroWidthNonJoiner         = '\u200C'
 )
 
-// ReplaceWholeWord replaces old into new only if old occurs as a whole word according
-// to regex word definition boundaries
-func ReplaceWordAll(s, replacement string, olds ...string) string {
-	reWordsMatcher := `\b(`
-	for _, old := range olds {
-		reWordsMatcher += regexp.QuoteMeta(old) + `|`
+// ReplaceWord replaces old strings into new only if olds occurs
+// as a whole word according to regex word definition boundaries
+func ReplaceWord(s, toBeReplaced string, replacements ...string) string {
+	matcher := `\b(`
+	for _, old := range replacements {
+		matcher += regexp.QuoteMeta(old) + `|`
 	}
-	reWordsMatcher = strings.TrimSuffix(reWordsMatcher, `|`) + `)\b`
-	return regexp.MustCompile(reWordsMatcher).ReplaceAllString(s, replacement)
+	matcher = strings.TrimSuffix(matcher, `|`) + `)\b`
+	return regexp.MustCompile(matcher).ReplaceAllLiteralString(s, toBeReplaced)
 }
 
 // ReplaceAll returns a string source with all elements of replacements replaced by toBeReplaced
