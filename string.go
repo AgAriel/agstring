@@ -10,20 +10,6 @@ import (
 	"github.com/pkg/errors"
 )
 
-// Nth returns nth element of given slice or empty string if out of limits
-func Nth(ls []string, n int) string {
-	if len(ls) == 0 || n < 0 || n >= len(ls) {
-		return ""
-	}
-	return ls[n]
-}
-
-// First returns the first element of given list or empty string when the list is empty.
-func First(ls ...string) string { return Nth(ls, 0) }
-
-// Last returns the last element of given list or empty string when the list is empty.
-func Last(ls ...string) string { return Nth(ls, len(ls)-1) }
-
 var nonAlphanumRegexp = regexp.MustCompile("[^[:alnum:]]")
 
 // RemoveNonAlnum removes non-alphanumeric characters from string
