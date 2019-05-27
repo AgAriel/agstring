@@ -1,6 +1,6 @@
 package agstring
 
-// First returns the first element of given list or empty string when the list is empty.
+// Head returns the first element of given list or empty string when the list is empty.
 func Head(ls ...string) string { return Nth(ls, 0) }
 
 // Last returns the last element of given list or empty string when the list is empty.
