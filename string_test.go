@@ -8,38 +8,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestFirst(t *testing.T) {
-	tests := []struct {
-		input    []string
-		expected string
-	}{
-		{nil, ""},
-		{[]string{}, ""},
-		{[]string{"one"}, "one"},
-		{[]string{"one", "two"}, "one"},
-	}
-
-	for _, tt := range tests {
-		require.Equal(t, tt.expected, First(tt.input...))
-	}
-}
-
-func TestLast(t *testing.T) {
-	tests := []struct {
-		input    []string
-		expected string
-	}{
-		{nil, ""},
-		{[]string{}, ""},
-		{[]string{"one"}, "one"},
-		{[]string{"one", "two"}, "two"},
-	}
-
-	for _, tt := range tests {
-		require.Equal(t, tt.expected, Last(tt.input...))
-	}
-}
-
 func TestNonEmpty(t *testing.T) {
 	tests := []struct {
 		input, expected, ifTrimmed []string
